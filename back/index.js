@@ -1,8 +1,23 @@
 const  express = require("express");
+const cors =  require("cors");
+const mongoose =  require("mongoose");
+const userRoutes = require("./routes/userRoutes")
 const app = express();
+require("dotenv").config();
 
-app.use("/", (req, res) => {
-    res.send("Hello Surbhi Jee");
-})
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/auth",userRoutes)
+
+//mongoose.connect(process.env.MONGO_URL,{
+//useNewUrlParser: true,
+//useUnifiedTopology: true,
+//}).then(()=> {
+//console.log("DB Connection Successfull");
+//}).catch((err)=> {
+// console.log(err.message);    
+//});
 
 app.listen(5000);
+
